@@ -5,7 +5,7 @@ pipeline {
         DOCKER_REGISTRY = "jujudevops"
         DOCKER_IMAGE_NAME = "jujudevops/abc-technologies"
         DOCKER_IMAGE_TAG = "${env.BUILD_NUMBER}"
-        DOCKER_PORT = "8888"
+        DOCKER_PORT = "8082"
         DOCKERHUB_USERNAME = 'jujudevops'
         DOCKERHUB_PASSWORD = credentials('f347aa87-41e5-40ab-b0e4-51ca2b46a34b')
     }
@@ -16,7 +16,7 @@ pipeline {
                 script {
                     def dockerfile = """
                         FROM tomcat:9-jre8
-                        EXPOSE ${DOCKER_PORT}
+                        EXPOSE \${DOCKER_PORT}
                         ENV TOMCAT_USER=admin
                         ENV TOMCAT_PASSWORD=password
                         ENV WAR_FILE=ABCTech.war
